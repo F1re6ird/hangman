@@ -3,7 +3,7 @@ import { hyperspace, explosion, earth, moon } from './assets/images'
 import { nanoid } from 'nanoid'
 import { useKeysStore } from './keysStore'
 import gsap from 'gsap'
-import type { Wordbank } from './definitions'
+import type { audio, Wordbank } from './definitions'
 import { backgroundTrack, sfxTracks } from './sounds'
 
 const App = () => {
@@ -21,7 +21,6 @@ const App = () => {
   const [flip, setFlip] = useState(true)
 
   const bgMusicRef = useRef(new Audio(backgroundTrack))
-  const [bgIsPlaying, setBgIsPlaying] = useState(false)
 
   // 
   useEffect(() => {
@@ -37,7 +36,7 @@ const App = () => {
     }
   }, [soundOn])
 
-  function playSfx(track) {
+  function playSfx(track: audio) {
     const sfx = new Audio(track.src)
     sfx.volume = 1.0
     sfx.play()
